@@ -103,4 +103,6 @@ if __name__ == "__main__":
     datefmt="%m/%d/%Y %H:%M:%S",
     handlers=[logging.StreamHandler(sys.stdout)],
   )
-  sys.exit(main())
+  retcode = main()
+  print(f'Exiting normally with code {retcode}', flush=True)
+  sys.exit(retcode)

@@ -194,12 +194,12 @@ def analyze_step_duration_from_pb(xspace: XSpace) -> float:
 
 if __name__ == "__main__":
   if len(sys.argv) != 2:
-    print(f"Usage: {sys.argv[0]} <path_to_proto_file>")
+    print(f"Usage: {sys.argv[0]} <path_to_proto_file>", flush=True)
     sys.exit(1)
   proto_file_path = sys.argv[1]
   try:
     median_duration = analyze_step_duration(proto_file_path)
-    print(f"Median step duration: {median_duration:.4f}")
+    print(f"Median step duration: {median_duration:.4f}", flush=True)
   except Exception as e:
-    print(f"Error: {e}")
+    print(f"Error: {e}", flush=True)
     sys.exit(1)
