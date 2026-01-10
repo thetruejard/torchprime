@@ -365,7 +365,9 @@ class Trainer:
     grad_norm = self.clip_gradients()
     print('Starting opt step', flush=True)
     self.optimizer.step()
+    print('Starting lr sched step', flush=True)
     self.lr_scheduler.step()
+    print('Starting zero grad', flush=True)
     self.model.zero_grad()
     return loss, grad_norm
 
