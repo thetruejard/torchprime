@@ -243,7 +243,6 @@ class Trainer:
         epoch += 1
         train_iterator = iter(train_loader)
         batch = next(train_iterator)
-      print('Batch collected', flush=True)
 
       # when context parallel and load balance context parallel is enabled,
       # we will reorder the sequence here for each batch
@@ -264,7 +263,6 @@ class Trainer:
       trace_start_time = timer()
       loss, grad_norm = self.train_step(batch)
       trace_end_time = timer()
-      print('Train step done', flush=True)
 
       if step % self.config.logging_steps == 0:
 
@@ -363,11 +361,8 @@ class Trainer:
     _logits, loss = self.model(**batch)
     loss.backward()
     grad_norm = self.clip_gradients()
-    print('Starting opt step', flush=True)
     self.optimizer.step()
-    print('Starting lr sched step', flush=True)
     self.lr_scheduler.step()
-    print('Starting zero grad', flush=True)
     self.model.zero_grad()
     return loss, grad_norm
 
