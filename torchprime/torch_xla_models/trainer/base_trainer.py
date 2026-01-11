@@ -351,6 +351,10 @@ class Trainer:
     metrics = metrics_logger.finalize()
     logger.info("***** train metrics *****\n%s", metrics)
     metrics.save(Path(self.config.output_dir) / "train_metrics.json")
+    p = 1
+    for param in self.model.parameters():
+      p += param.numel()
+    logger.info(f'NUM MODEL PARAMS: {p}')
 
     # Save the hydra config
     config_save_path = Path(self.config.output_dir) / "train_config.json"
